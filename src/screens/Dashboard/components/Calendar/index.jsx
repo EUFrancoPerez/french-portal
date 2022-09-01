@@ -1,6 +1,5 @@
 import * as React from "react";
 
-import moment from "moment";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { styled } from "@mui/material/styles";
 import isWeekend from "date-fns/isWeekend";
