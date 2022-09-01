@@ -92,7 +92,7 @@ function Calendar() {
                     ? "#00796b"
                     : isNotDisponible
                     ? "#d32f2f"
-                    : "white";
+                    : "";
 
                   return (
                     <Badge
