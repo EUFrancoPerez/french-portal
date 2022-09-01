@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import Badge from "@mui/material/Badge";
 import { PickersDay } from "@mui/x-date-pickers/PickersDay";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import isWeekend from "date-fns/isWeekend";
-import TextField from "@mui/material/TextField";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { StaticDatePicker } from "@mui/x-date-pickers/StaticDatePicker";
@@ -59,60 +57,76 @@ function Calendar() {
           </Typography>
         </Box>
       </Box>
-      <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <ThemeProvider theme={theme}>
-          <StaticDatePicker
-            orientation="landscape"
-            openTo="day"
-            value={value}
-            shouldDisableDate={disableDates}
-            renderDay={(date, _value, DayComponentProps) => {
-              const isSelected =
-                !DayComponentProps.outsideCurrentMonth &&
-                highlightedDays.includes(date.getDate());
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            backgroundColor: "white",
+            borderRadius: "8px",
+            padding: "20px",
+          }}
+        >
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <ThemeProvider theme={theme}>
+              <StaticDatePicker
+                orientation="landscape"
+                openTo="day"
+                value={value}
+                shouldDisableDate={disableDates}
+                renderDay={(date, _value, DayComponentProps) => {
+                  const isSelected =
+                    !DayComponentProps.outsideCurrentMonth &&
+                    highlightedDays.includes(date.getDate());
 
-              const isNotDisponible =
-                !DayComponentProps.outsideCurrentMonth &&
-                notDisponibleDays.includes(date.getDate());
+                  const isNotDisponible =
+                    !DayComponentProps.outsideCurrentMonth &&
+                    notDisponibleDays.includes(date.getDate());
 
-              const color = isSelected
-                ? "#00796b"
-                : isNotDisponible
-                ? "#d32f2f"
-                : "white";
+                  const color = isSelected
+                    ? "#00796b"
+                    : isNotDisponible
+                    ? "#d32f2f"
+                    : "white";
 
-              return (
-                <Badge
-                  key={date.toString()}
-                  overlap="circular"
-                  badgeContent={isSelected ? "🔵" : undefined}
-                >
-                  <PickersDay
-                    {...DayComponentProps}
-                    sx={{
-                      [`&&`]: {
-                        backgroundColor: color,
-                        color: (isSelected || isNotDisponible) && "white",
-                      },
-                    }}
-                  />
-                </Badge>
-              );
-            }}
-            PaperProps={{
-              sx: {
-                "& .MuiPickersDay-root": {
-                  backgroundColor: "#1976d2",
-                },
-              },
-            }}
-            onChange={(newValue) => {
-              setValue(newValue);
-            }}
-            renderInput={(params) => <TextField color="success" {...params} />}
-          />
-        </ThemeProvider>
-      </LocalizationProvider>
+                  return (
+                    <Badge
+                      key={date.toString()}
+                      overlap="circular"
+                      badgeContent={isSelected ? "🔵" : undefined}
+                    >
+                      <PickersDay
+                        {...DayComponentProps}
+                        sx={{
+                          [`&&`]: {
+                            backgroundColor: color,
+                            color: (isSelected || isNotDisponible) && "white",
+                          },
+                        }}
+                      />
+                    </Badge>
+                  );
+                }}
+                PaperProps={{
+                  sx: {
+                    "& .MuiPickersDay-root": {
+                      backgroundColor: "#1976d2",
+                    },
+                  },
+                }}
+                onChange={(newValue) => {
+                  setValue(newValue);
+                }}
+              />
+            </ThemeProvider>
+          </LocalizationProvider>
+        </Box>
+      </Box>
     </Box>
   );
 }

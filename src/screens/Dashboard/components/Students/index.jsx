@@ -37,7 +37,14 @@ const rows = [
 
 function Students() {
   return (
-    <div style={{ height: 400, width: "700px" }}>
+    <div
+      style={{
+        height: 400,
+        width: "700px",
+        background: "white",
+        borderRadius: "8px",
+      }}
+    >
       <DataGrid
         rows={rows}
         columns={columns}

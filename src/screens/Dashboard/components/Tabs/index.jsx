@@ -16,6 +16,7 @@ const StyledTabs = styled((props) => (
     justifyContent: "center",
     color: "#d32f2f !important",
     backgroundColor: "transparent",
+    background: "white !important",
   },
   "& .MuiTabs-indicatorSpan": {
     width: "100%",

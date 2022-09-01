@@ -11,7 +11,14 @@ import { deepOrange, deepPurple } from "@mui/material/colors";
 
 function Forum() {
   return (
-    <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
+    <List
+      sx={{
+        width: "100%",
+        maxWidth: 360,
+        bgcolor: "background.paper",
+        borderRadius: "8px",
+      }}
+    >
       <ListItem alignItems="flex-start">
         <ListItemAvatar>
           <Avatar alt="Lisa" src="./lisa.png" />
