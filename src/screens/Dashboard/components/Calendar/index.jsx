@@ -47,10 +47,7 @@ function Calendar() {
   const [value, setValue] = React.useState(new Date());
 
   const disableDates = (date) => {
-    return (
-      isWeekend(date) ||
-      (moment(date).format("DD") > 10 && moment(date).format("DD") < 18)
-    );
+    return isWeekend(date);
   };
 
   return (
