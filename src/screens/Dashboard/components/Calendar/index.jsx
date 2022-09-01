@@ -32,8 +32,8 @@ const theme = createTheme({
 
 function Calendar() {
   const [value, setValue] = useState(new Date());
-  const [highlightedDays, setHighlightedDays] = useState([2, 15, 19, 23, 29]);
-  const [notDisponibleDays, setNotDisponibleDays] = useState([5, 6, 21, 26]);
+  const [highlightedDays] = useState([2, 15, 19, 23, 29]);
+  const [notDisponibleDays] = useState([5, 6, 21, 26]);
 
   const disableDates = (date) => {
     return isWeekend(date);
