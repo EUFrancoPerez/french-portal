@@ -4,7 +4,8 @@ import Header from "./components/Header";
 import Tabs from "./components/Tabs";
 import Students from "./components/Students";
 import Documents from "./components/Documents";
-import Calendar from "./components/Calendar";
+//import Calendar from "./components/Calendar";
+import Calendar from "./components/CalendarLab";
 import Forum from "./components/Forum";
 
 import { TAB_OPTIONS } from "./constants";
