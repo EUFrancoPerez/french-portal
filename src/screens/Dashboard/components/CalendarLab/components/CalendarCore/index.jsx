@@ -15,7 +15,13 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-function CalendarCore({ nowDay, isThisWeek, week, appointments }) {
+function CalendarCore({
+  nowDay,
+  isThisWeek,
+  week,
+  appointments,
+  handleEditAppointmentButton,
+}) {
   const appointmentsOfThisWeek = appointments.filter((appointment) => {
     return appointment.date.startOf("week").isSame(week);
   });
@@ -26,9 +32,9 @@ function CalendarCore({ nowDay, isThisWeek, week, appointments }) {
     );
 
   return (
-    <Grid container justifyContent="center" spacing={2} marginBottom="24px">
+    <Grid container justifyContent="flex-start" spacing={2} marginBottom="24px">
       {Object.values(WEEK_DAYS).map((weekDay, index) => (
-        <Grid key={weekDay} item xs={1.5}>
+        <Grid key={weekDay} item xs={1.7}>
           <Item
             sx={{
               marginBottom: "24px",
@@ -60,10 +66,12 @@ function CalendarCore({ nowDay, isThisWeek, week, appointments }) {
             isAnAppointmentOfThisDay(index)?.map((appointment) => (
               <Item
                 key={appointment.title}
+                onClick={() => handleEditAppointmentButton(appointment.id)}
                 sx={{
                   background: "#1976d2",
                   marginBottom: "20px",
                   padding: "10px",
+                  cursor: "pointer",
                 }}
               >
                 <Typography
@@ -80,7 +88,7 @@ function CalendarCore({ nowDay, isThisWeek, week, appointments }) {
                 >
                   {`${appointment.date.format("hh:mm")}-${appointment.date
                     .add(60, "minute")
-                    .format("hh:mm")}`}
+                    .format("hh:mm A")}`}
                 </Typography>
               </Item>
             ))}

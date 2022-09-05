@@ -38,11 +38,17 @@ const theme = createTheme({
   },
 });
 
-function AddAppointmentModal({ isOpen, handleIsModalOpen, addNewAppointment }) {
-  const handleClose = () => handleIsModalOpen(false);
-  const [date, setDate] = useState(dayjs());
-  const [time, setTime] = useState(dayjs());
-  const [title, setTitle] = useState();
+function EditAppointmentModal({
+  isOpen,
+  handleIsEditModalOpen,
+  editAppointment,
+  appointment,
+  cancelAppointment,
+}) {
+  const handleClose = () => handleIsEditModalOpen(false);
+  const [date, setDate] = useState(appointment ? appointment.date : dayjs());
+  const [time, setTime] = useState(appointment ? appointment.date : dayjs());
+  const [title, setTitle] = useState(appointment ? appointment.title : "");
 
   const handleChange = (newValue) => {
     setDate(newValue);
@@ -52,9 +58,14 @@ function AddAppointmentModal({ isOpen, handleIsModalOpen, addNewAppointment }) {
     setTitle(e.target.value);
   };
 
-  const handleAddNewAppointment = () => {
-    handleIsModalOpen(false);
-    addNewAppointment(title, date, time);
+  const handleSaveAppointment = () => {
+    handleIsEditModalOpen(false);
+    editAppointment(title, date, time);
+  };
+
+  const handleCancelAppointment = () => {
+    cancelAppointment(appointment.id);
+    handleClose();
   };
 
   return (
@@ -96,19 +107,20 @@ function AddAppointmentModal({ isOpen, handleIsModalOpen, addNewAppointment }) {
             variant="h6"
             component="h2"
           >
-            Créer un nouveau rendez-vous
+            Éditer un nouveau rendez-vous
           </Typography>
           <TextField
             sx={{ marginBottom: "40px", width: "100%" }}
             id="standard-basic"
-            label="Ajouter un titre"
+            label="Éditer un titre"
             variant="standard"
             onChange={handleSetTitle}
+            value={title}
           />
           <Box sx={{ marginBottom: "24px", width: "100%" }}>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DesktopDatePicker
-                label="Choisir la date"
+                label="Éditer la date"
                 inputFormat="MM/DD/YYYY"
                 value={date}
                 onChange={handleChange}
@@ -120,7 +132,7 @@ function AddAppointmentModal({ isOpen, handleIsModalOpen, addNewAppointment }) {
                 )}
               />
               <TimePicker
-                label="Choisir l'heure"
+                label="Éditer l'heure"
                 value={time}
                 onChange={(newTimeValue) => {
                   setTime(newTimeValue);
@@ -135,24 +147,26 @@ function AddAppointmentModal({ isOpen, handleIsModalOpen, addNewAppointment }) {
             sx={{ display: "flex", width: "100%", justifyContent: "flex-end" }}
           >
             <Button
-              onClick={handleClose}
+              color="error"
+              onClick={handleCancelAppointment}
               sx={{
                 marginRight: "24px",
                 width: "105px",
               }}
               variant="outlined"
             >
+              {" "}
               Annuler
             </Button>
             <Button
-              onClick={handleAddNewAppointment}
+              onClick={handleSaveAppointment}
               disabled={title === ""}
               sx={{
                 width: "105px",
               }}
               variant="contained"
             >
-              Créer
+              Éditer
             </Button>
           </Box>
         </Box>
@@ -161,4 +175,4 @@ function AddAppointmentModal({ isOpen, handleIsModalOpen, addNewAppointment }) {
   );
 }
 
-export default AddAppointmentModal;
+export default EditAppointmentModal;

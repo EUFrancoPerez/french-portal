@@ -7,6 +7,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { StaticDatePicker } from "@mui/x-date-pickers/StaticDatePicker";
 import { PickersDay } from "@mui/x-date-pickers/PickersDay";
+import Box from "@mui/material/Box";
 
 dayjs.extend(isBetweenPlugin);
 
@@ -59,19 +60,21 @@ export default function CustomDay({ handleWeekChange }) {
   };
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <StaticDatePicker
-        displayStaticWrapperAs="desktop"
-        label="Week picker"
-        value={value}
-        onChange={(newValue) => {
-          setValue(newValue);
-          handleWeekChange(newValue.startOf("week"));
-        }}
-        renderDay={renderWeekPickerDay}
-        renderInput={(params) => <TextField {...params} />}
-        inputFormat="'Week of' MMM d"
-      />
-    </LocalizationProvider>
+    <Box sx={{ marginRight: "12px" }}>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <StaticDatePicker
+          displayStaticWrapperAs="desktop"
+          label="Week picker"
+          value={value}
+          onChange={(newValue) => {
+            setValue(newValue);
+            handleWeekChange(newValue.startOf("week"));
+          }}
+          renderDay={renderWeekPickerDay}
+          renderInput={(params) => <TextField {...params} />}
+          inputFormat="'Week of' MMM d"
+        />
+      </LocalizationProvider>
+    </Box>
   );
 }
