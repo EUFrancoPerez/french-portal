@@ -1,5 +1,5 @@
 import * as React from "react";
-
+import Box from "@mui/material/Box";
 import { DataGrid } from "@mui/x-data-grid";
 
 const columns = [
@@ -37,22 +37,24 @@ const rows = [
 
 function Students() {
   return (
-    <div
-      style={{
-        height: 400,
-        width: "700px",
-        background: "white",
-        borderRadius: "8px",
-      }}
-    >
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
-        checkboxSelection
-      />
-    </div>
+    <Box sx={{ display: "flex", justifyContent: "center", width: "100%" }}>
+      <div
+        style={{
+          height: 400,
+          width: "700px",
+          background: "white",
+          borderRadius: "8px",
+        }}
+      >
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          pageSize={5}
+          rowsPerPageOptions={[5]}
+          checkboxSelection
+        />
+      </div>
+    </Box>
   );
 }
 

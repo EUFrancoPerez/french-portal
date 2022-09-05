@@ -1,11 +1,11 @@
 export const WEEK_DAYS = {
-  SUNDAY: "Dimanche",
-  MONDAY: "Lundi",
-  TUESDAY: "Mardi",
-  WEDNESDAY: "Mercredi",
-  THURSDAY: "Jeudi",
-  FRIDAY: "Vendredi",
-  SATURDAY: "Samedi",
+  SUNDAY: "Dim",
+  MONDAY: "Lun",
+  TUESDAY: "Mar",
+  WEDNESDAY: "Mer",
+  THURSDAY: "Jeu",
+  FRIDAY: "Ven",
+  SATURDAY: "Sam",
 };
 
 export const DAY_HOURS = [

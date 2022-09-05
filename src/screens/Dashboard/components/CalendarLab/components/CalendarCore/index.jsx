@@ -60,7 +60,11 @@ function CalendarCore({ nowDay, isThisWeek, week, appointments }) {
             isAnAppointmentOfThisDay(index)?.map((appointment) => (
               <Item
                 key={appointment.title}
-                sx={{ background: "#1976d2", marginBottom: "20px" }}
+                sx={{
+                  background: "#1976d2",
+                  marginBottom: "20px",
+                  padding: "10px",
+                }}
               >
                 <Typography
                   variant="subtitle1"
@@ -70,12 +74,13 @@ function CalendarCore({ nowDay, isThisWeek, week, appointments }) {
                   {appointment.title}
                 </Typography>
                 <Typography
-                  variant="subtitle1"
+                  variant="body2"
                   component="h6"
                   sx={{ flexGrow: 1, color: "#FFF" }}
                 >
-                  {`${appointment.date.format("hh:mm")} - 
-                  ${appointment.date.add(60, "minute").format("hh:mm")}`}
+                  {`${appointment.date.format("hh:mm")}-${appointment.date
+                    .add(60, "minute")
+                    .format("hh:mm")}`}
                 </Typography>
               </Item>
             ))}
